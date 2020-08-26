@@ -8,7 +8,7 @@
     "run": "ts-node ./src/index.ts"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@kajitsu/ichigo": "*",
     "@kajitsu/suica": "*"

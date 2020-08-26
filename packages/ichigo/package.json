@@ -13,5 +13,5 @@
     "test": "jest"
   },
   "author": "",
-  "license": "ISC"
+  "license": "MIT"
 }
