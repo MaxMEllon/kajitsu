@@ -1,0 +1,16 @@
+{
+  "name": "@kajitsu/melon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -d -p ./tsconfig.json",
+    "run": "ts-node ./src/index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@kajitsu/ichigo": "*",
+    "@kajitsu/suica": "*"
+  }
+}
