@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc -d -p ./tsconfig.json",
+    "test": "echo TODO",
     "run": "ts-node ./src/index.ts"
   },
   "author": "",
