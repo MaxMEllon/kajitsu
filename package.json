@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "yarn workspaces run build",
+    "build": "make build",
     "test": "yarn workspaces run test"
   },
   "repository": {
