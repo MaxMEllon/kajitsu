@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "make build",
+    "build": "yarn workspaces run build",
     "test": "yarn workspaces run test"
   },
   "repository": {
@@ -19,7 +19,9 @@
   "homepage": "https://github.com/MaxMEllon/kajitsu#readme",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/ichigo",
+    "packages/suica",
+    "packages/melon"
   ],
   "devDependencies": {
     "@types/jest": "^26.0.10",
