@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from "http";
 import url from "url";
 
-interface RequestHandler {
+export interface RequestHandler {
   (
     req: IncomingMessage,
     res: ServerResponse,

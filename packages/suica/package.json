@@ -12,6 +12,9 @@
     "build": "npm run build:cjs && npm run build:esm && npm run build:types",
     "test": "jest"
   },
+  "dependencies": {
+    "@kajitsu/ichigo": "*"
+  },
   "author": "",
   "license": "MIT"
 }
