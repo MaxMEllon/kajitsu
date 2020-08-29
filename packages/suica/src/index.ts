@@ -1,8 +1,17 @@
 import { IncomingMessage, ServerResponse } from "http";
 import url from "url";
 
+export * as middleware from "./middleware";
+
+declare global {
+  namespace Suica {
+    export interface Context {}
+  }
+}
+
 export interface RequestHandler {
   (
+    ctx: Suica.Context,
     req: IncomingMessage,
     res: ServerResponse,
     next: (err?: Error) => void
@@ -28,6 +37,7 @@ class App {
 
   run(req: IncomingMessage, res: ServerResponse): void {
     let idx = 0;
+    let ctx: Suica.Context = {};
     while (idx < this.routing.length) {
       const next = () => idx++;
       const [pathOrRegExp, handler] = this.routing[idx];
@@ -38,7 +48,7 @@ class App {
           : pathOrRegExp.test(currentPath ?? "");
       if (isMatch) {
         const prevIdx = idx;
-        handler(req, res, next);
+        handler(ctx, req, res, next);
         if (prevIdx === idx) break;
       }
     }

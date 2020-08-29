@@ -6,7 +6,7 @@ describe("createSuica", () => {
   it("expected handle request when use '/' middleware and got '/' request", (done) => {
     const suica = createSuica();
 
-    suica.use("/", (req, res) => {
+    suica.use("/", (_ctx, req, res) => {
       assert.strictEqual(req.method, "GET");
       res.write("foo");
       res.end();
@@ -25,8 +25,8 @@ describe("createSuica", () => {
   it("expected chain middleware when use two middlewares", (done) => {
     const suica = createSuica();
 
-    suica.use((_req, _res, next) => next());
-    suica.use((req, res) => {
+    suica.use((_ctx, _req, _res, next) => next());
+    suica.use((_ctx, req, res) => {
       assert.strictEqual(req.method, "POST");
       res.write("foo");
       res.end();
