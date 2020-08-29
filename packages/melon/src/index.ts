@@ -1,7 +1,7 @@
 import { createServer, IncomingMessage, ServerResponse } from "http";
 import { on } from "events";
 import { createSuica } from "@kajitsu/suica";
-import { readBodyAsJSON } from "./utils/read-body";
+import { bodyParser } from "@kajitsu/suica/build/middleware";
 
 type RequestEventIterator = AsyncIterableIterator<
   [IncomingMessage, ServerResponse]
@@ -9,9 +9,9 @@ type RequestEventIterator = AsyncIterableIterator<
 
 const suica = createSuica();
 
-suica.use(/\/echo$/, async (req, res) => {
-  const body = await readBodyAsJSON(req);
-  res.write(JSON.stringify(body));
+suica.use(bodyParser.json);
+suica.use("/", (ctx, _req, res) => {
+  res.write(JSON.stringify(ctx.body));
   res.end();
 });
 
