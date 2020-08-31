@@ -11,7 +11,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@kajitsu/ichigo": "*",
-    "@kajitsu/suica": "*"
+    "@kajitsu/ichigo": "1.0.0",
+    "@kajitsu/suica": "1.0.0"
   }
 }

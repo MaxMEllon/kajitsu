@@ -23,7 +23,7 @@ jobs:
       with:
         # npm cache files are stored in `~/.npm` on Linux/macOS
         path: '**/node_modules'
-        key: ${{ runner.os }}-modules--${{ hashFiles('**/yarn.lock') }}--${{ hashFiles('**/packages/package.json') }}
+        key: ${{ runner.os }}-modules--${{ hashFiles('**/yarn.lock') }}--${{ hashFiles('**/package.json') }}
 
     - run:  npm config set scripts-prepend-node-path true
 
@@ -31,10 +31,10 @@ jobs:
 
     - run: yarn install
 
-    - run: yarn test
-      env:
-        NODE_ENV: test
-
     - run: yarn build
       env:
         NODE_ENV: production
+
+    - run: yarn test
+      env:
+        NODE_ENV: test
