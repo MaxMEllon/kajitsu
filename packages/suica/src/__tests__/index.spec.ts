@@ -1,6 +1,9 @@
 import assert from "assert";
+import {
+  createMockIncomingMessage,
+  createMockServerResponse,
+} from "@kajitsu/naruto";
 import { createSuica } from "..";
-import { createMockIncomingMessage, createMockServerResponse } from "../mock";
 
 describe("createSuica", () => {
   it("expected handle request when use '/' middleware and got '/' request", (done) => {
