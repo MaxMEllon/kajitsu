@@ -1,7 +1,6 @@
 {
-  "name": "@kajitsu/suica",
+  "name": "@kajitsu/naruto",
   "version": "1.0.0",
-  "description": "",
   "main": "build/index.js",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
@@ -9,12 +8,7 @@
     "build:cjs": "tsc -d -p ./tsconfig.json",
     "build:esm": "tsc -d -p ./tsconfig.esm.json",
     "build": "npm run build:cjs && npm run build:esm",
-    "test": "jest"
+    "test": "echo TODO"
   },
-  "dependencies": {
-    "@kajitsu/ichigo": "1.0.0",
-    "@kajitsu/naruto": "1.0.0"
-  },
-  "author": "",
   "license": "MIT"
 }

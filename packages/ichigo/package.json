@@ -8,9 +8,11 @@
   "scripts": {
     "build:cjs": "tsc -d -p ./tsconfig.json",
     "build:esm": "tsc -d -p ./tsconfig.esm.json",
-    "build:types": "tsc --emitDeclarationOnly -d -p ./tsconfig.esm.json",
-    "build": "npm run build:cjs && npm run build:esm && npm run build:types",
+    "build": "npm run build:cjs && npm run build:esm",
     "test": "jest"
+  },
+  "dependencies": {
+    "@kajitsu/naruto": "1.0.0"
   },
   "author": "",
   "license": "MIT"

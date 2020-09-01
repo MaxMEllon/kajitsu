@@ -19,6 +19,7 @@
   "homepage": "https://github.com/MaxMEllon/kajitsu#readme",
   "private": true,
   "workspaces": [
+    "packages/naruto",
     "packages/ichigo",
     "packages/suica",
     "packages/melon"
