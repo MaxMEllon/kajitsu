@@ -1,5 +1,6 @@
 import { RequestHandler } from "../..";
 import { concatStream } from "./utils";
+import { http } from "@kajitsu/ichigo";
 
 declare global {
   namespace Suica {
@@ -10,6 +11,7 @@ declare global {
 }
 
 export const json: RequestHandler = async (ctx, req, _res, next) => {
+  if (http.contentType(req).subtype !== "json") return next();
   try {
     const string = await concatStream(req);
     ctx.body = JSON.parse(string);
