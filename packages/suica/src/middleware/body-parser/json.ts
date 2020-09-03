@@ -1,3 +1,4 @@
+import { http } from "@kajitsu/ichigo";
 import { RequestHandler } from "../..";
 import { concatStream } from "./utils";
 
