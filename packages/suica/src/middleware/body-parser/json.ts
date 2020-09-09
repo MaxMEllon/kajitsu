@@ -1,7 +1,6 @@
 import { http } from "@kajitsu/ichigo";
 import { RequestHandler } from "../..";
 import { concatStream } from "./utils";
-import { http } from "@kajitsu/ichigo";
 
 declare global {
   namespace Suica {
