@@ -41,4 +41,4 @@ export function createElement<P = {}>(
   };
 }
 
-export const h = createElement
+export const h = createElement;
