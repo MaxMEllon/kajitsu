@@ -1,6 +1,7 @@
+import { pipe } from "@kajitsu/ichigo";
 import { FC, h } from ".";
 
-const map = new Map<string, string>();
+let map = new Map<string, string>();
 
 const randomString = (): string => {
   const str =
@@ -10,7 +11,24 @@ const randomString = (): string => {
   return str;
 };
 
+export const refreshCache = () => (map = new Map<string, string>());
+
 export const getClassNames = (): string[] => Array.from(map.keys());
+
+const trimSpace = (str: string): string => str.replace(/\s+/g, " ");
+const trimNewLine = (str: string): string => str.replace("\n", " ");
+const trim = (str: string) => pipe(str, trimSpace, trimNewLine);
+
+/**
+ * @summary should be call renderToString before this.
+ */
+export const renderToStyleString = () => {
+  const concatString = () =>
+    Array.from(map.entries())
+      .map(([key, val]) => `.${key}{${trim(val)}}`)
+      .join(" ");
+  return `<style>${concatString()}</style>`;
+};
 
 export const css = <P = {}>(node: FC | string) => (
   strings: TemplateStringsArray,
@@ -21,8 +39,7 @@ export const css = <P = {}>(node: FC | string) => (
     (acc, cur, idx) => (args[idx] ? acc + cur + args[idx] : acc + cur),
     ""
   );
-  const rawString = `.${className} { ${style} }`;
-  map.set(className, rawString);
+  map.set(className, style);
   const Component: FC<P> = (props) => h(node, { className, ...props });
   return Component;
 };
