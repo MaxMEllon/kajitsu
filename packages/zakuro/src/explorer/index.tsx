@@ -10,12 +10,15 @@ type RequestEventIterator = AsyncIterableIterator<
 
 const suica = createSuica();
 
+console.log(atomsStories);
+
 suica.use(middleware.bodyParser.json);
 atomsStories.map((scenario) => {
   suica.use(`/${scenario.key}`, (_ctx, _req, res) => {
     const { Wrapper } = require("./wrapper");
     const style = renderToStyleString();
-    const html = renderToString(<Wrapper style={style}>{scenario.story()}</Wrapper>
+    const html = renderToString(
+      <Wrapper style={style}>{scenario.story()}</Wrapper>
     );
     res.write(html);
     res.end();

@@ -1,27 +1,19 @@
-import { h, FC, styled } from "@kajitsu/lemon";
+import { h, FC } from "@kajitsu/lemon";
 
 export const Wrapper: FC<{ style: string }> = ({ style, children }) => {
   return (
     <html>
       <head>
+        {/* @ts-ignore */}
+        <meta charset="utf-8" />
         {style}
         {/* @ts-ignore */}
         <style>{globalStyle}</style>
       </head>
-      <body>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 };
-
-const Sidebar = styled("nav")`
-  position: absolute;
-  border-right: 1px solid gray;
-  height: 100%;
-  width: 250px;
-  background-color: #e4e4e4;
-`;
 
 const globalStyle = `
   html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,

@@ -1,16 +1,37 @@
 import { h, FC, styled } from "@kajitsu/lemon";
+import { atomsStories } from "./import";
 
 export const Root: FC<{ style: string }> = ({ style }) => {
   return (
     <html>
       <head>
+        {/* @ts-ignore */}
+        <meta charset="utf-8" />
         {style}
         {/* @ts-ignore */}
         <style>{globalStyle}</style>
       </head>
       <body>
-        <Sidebar />
+        <Sidebar>
+          {/* @ts-ignore */}
+          <ul>
+            {atomsStories.map((scenario) => (
+              // @ts-ignore
+              <p>
+                {/* @ts-ignore */}
+                <button>{scenario.key}</button>
+              </p>
+            ))}
+            {/* @ts-ignore */}
+          </ul>
+        </Sidebar>
+        <Main>
+          {/* @ts-ignore */}
+          <iframe />
+        </Main>
       </body>
+      {/* @ts-ignore */}
+      <script>{script}</script>
     </html>
   );
 };
@@ -21,6 +42,11 @@ const Sidebar = styled("nav")`
   height: 100%;
   width: 250px;
   background-color: #e4e4e4;
+`;
+
+const Main = styled("main")`
+  position: absolute;
+  left: 251px;
 `;
 
 const globalStyle = `
@@ -95,5 +121,15 @@ const globalStyle = `
       text-shadow: none;
       transform: translateY(1px);
     }
+  }
+`;
+
+const script = `
+  const iframe = document.querySelector('iframe')
+  const buttons = document.querySelectorAll('button')
+  for (const b of buttons) {
+    b.addEventListener('click', () => {
+      iframe.src = '/' + b.innerText
+    })
   }
 `;
