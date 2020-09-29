@@ -3,11 +3,11 @@ import { h } from "..";
 
 describe("createElement", () => {
   it("expected to get type as string VNode when give 1st args string", () => {
-    const actual = h("p", { foo: "hoge" });
+    const actual = h("p", { id: "hoge" });
     assert.deepStrictEqual(actual, {
       props: {
         children: [],
-        foo: "hoge",
+        id: "hoge",
       },
       type: "p",
     });

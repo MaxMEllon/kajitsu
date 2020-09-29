@@ -1,0 +1,16 @@
+{
+  "name": "@kajitsu/zakuro",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build:cjs": "tsc -d -p ./tsconfig.json",
+    "build:esm": "tsc -d -p ./tsconfig.esm.json",
+    "build": "npm run build:cjs && npm run build:esm",
+    "test": "echo TODO"
+  },
+  "author": "",
+  "dependencies": {
+    "@kajitsu/lemon": "1.0.0"
+  }
+}

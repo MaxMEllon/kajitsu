@@ -4,6 +4,15 @@ const arrayToString = (node: VNode<{ children: any[] }>): string => {
   return node.props.children.map(renderToString).join("");
 };
 
+const attrToString = ([key, value]: [string, unknown]): string => {
+  switch (key) {
+    case "className":
+      return `class="${value}"`;
+    default:
+      return `${key}="${value}"`;
+  }
+};
+
 export function renderToString(node: VNode<any> | string | null): string {
   if (!node) return "";
   if (typeof node === "string") return node;
@@ -12,7 +21,7 @@ export function renderToString(node: VNode<any> | string | null): string {
   if (typeof node.type === "string") {
     const attr = Object.entries(node.props)
       .filter(([k, _]) => k !== "children")
-      .map(([k, v]) => `${k}="${v}"`)
+      .map(attrToString)
       .join(" ")
       .trim();
     const typeAndAttr = `${node.type} ${attr}`.trim();
