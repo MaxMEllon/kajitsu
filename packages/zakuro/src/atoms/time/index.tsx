@@ -1,9 +1,6 @@
 import { h, FC } from "@kajitsu/lemon";
 
-export const Time: FC<{ datetime?: string; children: string }> = ({
-  datetime,
-  children,
-}) => {
+export const Time: FC<{ datetime?: string }> = ({ datetime, children }) => {
   if (datetime) return <time datetime={datetime}>{children}</time>;
   return <time>{children}</time>;
 };
