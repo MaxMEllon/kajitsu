@@ -11,12 +11,11 @@ declare global {
 }
 
 export const json: RequestHandler = async (ctx, req, _res, next) => {
-  if (http.contentType(req).subtype !== "json") return next();
   try {
+    if (http.contentType(req).subtype !== "json") return next();
     const string = await concatStream(req);
     ctx.body = JSON.parse(string);
-  } catch (err) {
-    next(err);
+  } catch {
+    next();
   }
-  next();
 };
