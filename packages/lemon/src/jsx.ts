@@ -6,6 +6,8 @@
  * 3.2.5.
  */
 
+import { RFC2978 } from "./rfc2978";
+
 type WhatWGMicroData = Partial<{
   itemid: string;
   itemprop: string;
@@ -66,7 +68,7 @@ export interface InternalIntrinsicElements {
       name: string;
       "http-equiv": string;
       content: string;
-      charset: string;
+      charset: RFC2978;
     }>;
   style: GlobalAttributes &
     Partial<{
@@ -135,6 +137,15 @@ export interface InternalIntrinsicElements {
   abbr: GlobalAttributes &
     Partial<{
       title: string;
+    }>;
+  b: GlobalAttributes;
+  bdi: GlobalAttributes &
+    Partial<{
+      dir: "ltr" | "rtl" | "auto";
+    }>;
+  bdo: GlobalAttributes &
+    Partial<{
+      dir: "ltr" | "rtl" | "auto";
     }>;
 
   // wip
