@@ -5,6 +5,7 @@ import {
   FC,
   Children,
   ComponentChildren,
+  InternalIntrinsicElements,
 } from "./jsx";
 
 export * from "./jsx";
@@ -12,19 +13,7 @@ export * from "./renderToString";
 
 namespace JSXInternal {
   export type Element = VNode;
-
-  export interface IntrinsicElements {
-    div: GlobalAttributes;
-    p: GlobalAttributes;
-    span: GlobalAttributes;
-    time: GlobalAttributes &
-      Partial<{
-        datetime: string;
-      }>;
-    html: {};
-    head: {};
-    body: {};
-  }
+  export type IntrinsicElements = InternalIntrinsicElements;
 }
 
 export type HTMLAttributes = GlobalAttributes;
