@@ -1,4 +1,4 @@
-import { h } from "..";
+import { renderToString } from "..";
 import { css, getClassNames, renderToStyleString } from "../css";
 
 describe("css", () => {
@@ -6,10 +6,11 @@ describe("css", () => {
     const Component = css.div`
       color: black;
     `;
-    const classNames = getClassNames();
     // <Component /> == Component({})
-    expect(Component({})).toEqual(h("div", { className: classNames[0] }));
+    const string = renderToString(Component({}));
     const act = renderToStyleString();
+    const classNames = getClassNames();
+    expect(string).toEqual(`<div class="${classNames[0]}"></div>`);
     expect(act).toEqual(`<style>.${classNames[0]}{ color: black; }</style>`);
   });
 });

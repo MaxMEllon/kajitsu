@@ -30,7 +30,10 @@ class App {
   constructor() {
     this.use = (...args: any[]) => {
       if (args.length >= 3) throw new Error("arguments error");
-      if (args.length == 2) this.routing.push([args[0], args[1]]);
+      if (args.length == 2) {
+        this.routing.push([args[0], args[1]]);
+        return;
+      }
       this.routing.push(["", args[0]]);
     };
   }
@@ -50,6 +53,8 @@ class App {
         const prevIdx = idx;
         handler(ctx, req, res, next);
         if (prevIdx === idx) break;
+      } else {
+        idx++;
       }
     }
     if (!res.writableEnded) {
