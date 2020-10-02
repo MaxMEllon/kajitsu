@@ -1,21 +1,4 @@
-import { h, FC } from "@kajitsu/lemon";
-
-export const Wrapper: FC<{ style: string }> = ({ style, children }) => {
-  return (
-    <html>
-      <head>
-        {/* @ts-ignore */}
-        <meta charset="utf-8" />
-        {style}
-        {/* @ts-ignore */}
-        <style>{globalStyle}</style>
-      </head>
-      <body>{children}</body>
-    </html>
-  );
-};
-
-const globalStyle = `
+export const globalStyle = `
   html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
   blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em,
   img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u,

@@ -39,7 +39,6 @@ export function renderToString(node: VNode<any> | string | null): string {
       node.type({
         ...props,
         children: children.map((c: any) => {
-          console.log(c);
           return renderToString(c);
         }),
       })

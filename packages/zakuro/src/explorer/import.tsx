@@ -7,7 +7,6 @@ const atoms = fs
     withFileTypes: true,
   })
   .filter((file) => file.isDirectory());
-console.log(atoms);
 
 type Story = {
   [k: string]: () => VNode<any>;

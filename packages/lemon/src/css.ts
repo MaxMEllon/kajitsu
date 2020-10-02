@@ -39,9 +39,11 @@ export const css = <P = {}>(node: FC | string) => (
     (acc, cur, idx) => (args[idx] ? acc + cur + args[idx] : acc + cur),
     ""
   );
-  map.set(className, style);
-  // @ts-expect-error [2769] No overload matches this call.
-  const Component: FC<P> = (props) => h(node, { className, ...props });
+  const Component: FC<P> = (props) => {
+    map.set(className, style);
+    // @ts-expect-error [2769] No overload matches this call.
+    return h(node, { className, ...props });
+  };
   return Component;
 };
 
