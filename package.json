@@ -22,8 +22,8 @@
     "packages/naruto",
     "packages/ichigo",
     "packages/lemon",
-    "packages/zakuro",
     "packages/suica",
+    "packages/zakuro",
     "packages/melon"
   ],
   "devDependencies": {
