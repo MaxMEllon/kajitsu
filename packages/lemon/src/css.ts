@@ -1,5 +1,6 @@
 import { pipe } from "@kajitsu/ichigo";
 import { FC, h } from ".";
+import { InternalIntrinsicElements } from "./jsx";
 
 let map = new Map<string, string>();
 
@@ -30,7 +31,7 @@ export const renderToStyleString = () => {
   return `<style>${concatString()}</style>`;
 };
 
-export const css = <P = {}>(node: FC | string) => (
+export const css = <P = {}>(node: FC | keyof InternalIntrinsicElements) => (
   strings: TemplateStringsArray,
   ...args: string[]
 ): FC<P> => {
@@ -46,7 +47,3 @@ export const css = <P = {}>(node: FC | string) => (
   };
   return Component;
 };
-
-css.div = css("div");
-css.p = css("p");
-css.span = css("span");
