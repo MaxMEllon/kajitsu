@@ -6,6 +6,7 @@
  * 3.2.5.
  */
 
+import { AutoComplete } from "./autocomplete";
 import { RFC2978 } from "./rfc2978";
 import { Role } from "./role";
 import { WAIAria } from "./wai-aria";
@@ -381,7 +382,7 @@ export interface InternalIntrinsicElements {
     Partial<{
       "accept-charset": RFC2978;
       action: string;
-      autocomplete: string;
+      autocomplete: AutoComplete;
       enctype: string;
       method: string;
       name: string;
@@ -393,7 +394,7 @@ export interface InternalIntrinsicElements {
     Partial<{
       accept: string;
       alt: string;
-      autocomplete: string;
+      autocomplete: AutoComplete;
       checked: string;
       dirname: string;
       disabled: boolean;
@@ -459,7 +460,7 @@ export interface InternalIntrinsicElements {
     }>;
   select: GlobalAttributes &
     Partial<{
-      autocomplete: string;
+      autocomplete: AutoComplete;
       disabled: boolean;
       form: string;
       multiple: string;
@@ -469,7 +470,7 @@ export interface InternalIntrinsicElements {
     }>;
   textarea: GlobalAttributes &
     Partial<{
-      autocomplete: string;
+      autocomplete: AutoComplete;
       cols: number;
       dirname: string;
       disabled: boolean;
