@@ -7,6 +7,8 @@
  */
 
 import { RFC2978 } from "./rfc2978";
+import { Role } from "./role";
+import { WAIAria } from "./wai-aria";
 
 type WhatWGMicroData = Partial<{
   itemid: string;
@@ -30,7 +32,9 @@ export type GlobalAttributes = Partial<{
   title: string;
   translate: string;
 }> &
-  WhatWGMicroData;
+  WhatWGMicroData &
+  WAIAria &
+  Partial<{ role: Role }>;
 
 export interface InternalIntrinsicElements {
   // メインルート

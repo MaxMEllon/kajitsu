@@ -25,4 +25,9 @@ describe("renderToString", () => {
     );
     expect(actual).toEqual(`<div class="hoge"></div>`);
   });
+
+  it("expect joined string if got aria-relevant token list", () => {
+    const actual = renderToString(<div aria-relevant={["additions", "all"]} />);
+    expect(actual).toEqual(`<div aria-relevant="additions all"></div>`);
+  });
 });

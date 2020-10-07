@@ -3,7 +3,7 @@ import { css, getClassNames, renderToStyleString } from "../css";
 
 describe("css", () => {
   it("works", () => {
-    const Component = css.div`
+    const Component = css("div")`
       color: black;
     `;
     // <Component /> == Component({})

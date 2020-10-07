@@ -8,6 +8,8 @@ const attrToString = ([key, value]: [string, unknown]): string => {
   switch (key) {
     case "className":
       return `class="${value}"`;
+    case "aria-relevant":
+      return `aria-relevant="${(value as Array<string>).join(" ")}"`;
     default:
       return `${key}="${value}"`;
   }
