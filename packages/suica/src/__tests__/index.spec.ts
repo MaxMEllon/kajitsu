@@ -6,10 +6,10 @@ import {
 import { createSuica } from "..";
 
 describe("createSuica", () => {
-  it("expected handle request when use '/' middleware and got '/' request", (done) => {
+  it("expected handle request when use '/' middleware and got '/' request", async (done) => {
     const suica = createSuica();
 
-    suica.use("/", (_ctx, req, res) => {
+    suica.use("/", async (_ctx, req, res) => {
       assert.strictEqual(req.method, "GET");
       res.write("foo");
       res.end();
@@ -22,14 +22,14 @@ describe("createSuica", () => {
     });
     const res = createMockServerResponse();
 
-    suica.run(req, res);
+    await suica.run(req, res);
   });
 
-  it("expected chain middleware when use two middlewares", (done) => {
+  it("expected chain middleware when use two middlewares", async (done) => {
     const suica = createSuica();
 
-    suica.use((_ctx, _req, _res, next) => next());
-    suica.use((_ctx, req, res) => {
+    suica.use(async (_ctx, _req, _res, next) => await next());
+    suica.use(async (_ctx, req, res) => {
       assert.strictEqual(req.method, "POST");
       res.write("foo");
       res.end();
@@ -42,6 +42,6 @@ describe("createSuica", () => {
     });
     const res = createMockServerResponse();
 
-    suica.run(req, res);
+    await suica.run(req, res);
   });
 });
