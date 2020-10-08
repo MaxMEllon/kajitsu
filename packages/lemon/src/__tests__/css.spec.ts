@@ -1,16 +1,16 @@
-import { renderToString } from "..";
-import { css, getClassNames, renderToStyleString } from "../css";
+import { createStyleContext, renderToString } from "..";
+import { css, renderToStyleString } from "../css";
 
 describe("css", () => {
   it("works", () => {
     const Component = css("div")`
       color: black;
     `;
-    // <Component /> == Component({})
+    const ctx = createStyleContext().set();
     const string = renderToString(Component({}));
-    const act = renderToStyleString();
-    const classNames = getClassNames();
+    const act = renderToStyleString(ctx);
+    const classNames = ctx.getClassNames();
     expect(string).toEqual(`<div class="${classNames[0]}"></div>`);
-    expect(act).toEqual(`<style>.${classNames[0]}{ color: black; }</style>`);
+    expect(act).toEqual(`.${classNames[0]}{ color: black; }`);
   });
 });

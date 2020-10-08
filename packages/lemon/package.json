@@ -7,7 +7,8 @@
   "scripts": {
     "build:cjs": "tsc -d -p ./tsconfig.json",
     "build:esm": "tsc -d -p ./tsconfig.esm.json",
-    "build": "npm run build:cjs && npm run build:esm",
+    "prebuild": "rm -rf esm build *.tsbuildinfo",
+    "build": "npm run build:esm && npm run build:cjs",
     "test": "jest"
   },
   "dependencies": {
