@@ -16,7 +16,7 @@ export const atomsStories = atoms
   .map((f) => {
     const stories = require(`${__dirname}/../atoms/${f.name}/story.tsx`) as Story;
     return Object.entries(stories).map(([key, story]) => ({
-      key: `atom/${f.name}/${key}`,
+      key: `atoms/${f.name}/${key}`,
       story,
     }));
   })
