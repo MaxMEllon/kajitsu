@@ -5,12 +5,13 @@ describe("css", () => {
   it("works", () => {
     const Component = css("div")`
       color: black;
+      font-weight: 800;
     `;
     const ctx = createStyleContext().set();
     const string = renderToString(Component({}));
     const act = renderToStyleString(ctx);
     const classNames = ctx.getClassNames();
     expect(string).toEqual(`<div class="${classNames[0]}"></div>`);
-    expect(act).toEqual(`.${classNames[0]}{ color: black; }`);
+    expect(act).toEqual(`.${classNames[0]}{color:black;font-weight:800}`);
   });
 });
