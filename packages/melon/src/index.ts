@@ -9,7 +9,7 @@ type RequestEventIterator = AsyncIterableIterator<
 const suica = createSuica();
 
 suica.use(middleware.bodyParser.json);
-suica.use("/", (ctx, _req, res) => {
+suica.use("/", async (ctx, _req, res) => {
   res.write(JSON.stringify(ctx.body));
   res.end();
 });
