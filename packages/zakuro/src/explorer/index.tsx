@@ -1,52 +1,80 @@
 import { createServer, IncomingMessage, ServerResponse } from "http";
 import { on } from "events";
-import { createSuica, middleware } from "@kajitsu/suica";
+import { readFile } from "fs";
+import { resolve } from "path";
+import { promisify } from "util";
+import { createSuica } from "@kajitsu/suica";
 import {
+  FC,
   h,
-  refreshStyleCache,
   renderToString,
   renderToStyleString,
+  createStyleContext,
 } from "@kajitsu/lemon";
 import { atomsStories } from "./import";
-import { globalStyle } from "./globalStyle";
 import { Root } from "./root";
 
 type RequestEventIterator = AsyncIterableIterator<
   [IncomingMessage, ServerResponse]
 >;
 
+const readFileAsync = promisify(readFile);
+
 const suica = createSuica();
 
-const template = ({ style, children }: { style: string; children: string }) => `
-  <html>
+const Html: FC<{ css?: string }> = ({ children, css }) => (
+  <html lang="ja">
     <head>
       <meta charset="UTF-8" />
-      ${style}
-      <style>${globalStyle}</style>
+      <link rel="stylesheet" href="/assets/index.css"></link>
+      <link rel="stylesheet" href="/assets/explorer.css"></link>
+      {typeof css === "string" && <style>{css}</style>}
     </head>
-    <body>
-      ${children}
-    </body>
+    <body>{children}</body>
+    <script async src="/assets/index.js"></script>
   </html>
-`;
+);
 
-suica.use(middleware.bodyParser.json);
 atomsStories.map((scenario) => {
-  suica.use(`/${scenario.key}`, (_ctx, _req, res) => {
-    refreshStyleCache();
+  suica.use(`/${scenario.key}`, async (_ctx, _req, res) => {
+    const styleContext = createStyleContext().set();
     const children = renderToString(scenario.story());
-    const style = renderToStyleString();
-    res.write(template({ style, children }));
+    const css = renderToStyleString(styleContext);
+    res.write(renderToString(<Html css={css}>{children}</Html>));
     res.end();
   });
 });
 
-suica.use("/", (_ctx, req, res, next) => {
-  if (req.method !== "GET") return next();
-  refreshStyleCache();
-  const root = renderToString(<Root />);
-  const style = renderToStyleString();
-  res.write(template({ children: root, style }));
+suica.use("/assets/index.js", async (_ctx, req, res, next) => {
+  if (req.method !== "GET") return await next();
+  const js = await readFileAsync(resolve(__dirname, "assets", "index.js"));
+  res.setHeader("Content-Type", "text/javascript");
+  res.write(js);
+  res.end();
+});
+
+suica.use("/assets/index.css", async (_ctx, req, res, next) => {
+  if (req.method !== "GET") return await next();
+  const css = await readFileAsync(resolve(__dirname, "assets", "index.css"));
+  res.setHeader("Content-Type", "text/css");
+  res.write(css);
+  res.end();
+});
+
+const styleContext = createStyleContext().set();
+const root = renderToString(<Root />);
+const style = renderToStyleString(styleContext);
+
+suica.use("/assets/explorer.css", async (_ctx, req, res, next) => {
+  if (req.method !== "GET") return await next();
+  res.setHeader("Content-Type", "text/css");
+  res.write(style);
+  res.end();
+});
+
+suica.use("/", async (_ctx, req, res, next) => {
+  if (req.method !== "GET") return await next();
+  res.write(renderToString(<Html>{root}</Html>));
   res.end();
 });
 
@@ -54,5 +82,5 @@ suica.use("/", (_ctx, req, res, next) => {
 !(async () => {
   const itr: RequestEventIterator = on(createServer().listen(6789), "request");
   for await (const [req, res] of itr) //
-    suica.run(req, res);
+    await suica.run(req, res);
 })();

@@ -16,6 +16,6 @@ export const json: RequestHandler = async (ctx, req, _res, next) => {
     const string = await concatStream(req);
     ctx.body = JSON.parse(string);
   } catch {
-    next();
+    await next();
   }
 };

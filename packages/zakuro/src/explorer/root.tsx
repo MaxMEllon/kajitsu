@@ -3,26 +3,32 @@ import { atomsStories } from "./import";
 
 export const Root: FC = () => {
   return (
-    <main>
-      <Sidebar>
-        <ul>
-          {atomsStories.map((scenario) => (
-            <p>
-              {/* @ts-ignore */}
-              <button>{scenario.key}</button>
-            </p>
-          ))}
-        </ul>
+    <Main>
+      <Sidebar role="menu">
+        <section>
+          <GroupHeader>atoms</GroupHeader>
+          <ul>
+            {atomsStories.map((scenario) => (
+              <li>
+                <Button role="menuitem" class="story-select-button">
+                  {scenario.key}
+                </Button>
+              </li>
+            ))}
+          </ul>
+        </section>
       </Sidebar>
       <Section>
-        {/* @ts-ignore */}
-        <iframe />
-        {/* @ts-ignore */}
-        <script>{script}</script>
+        <iframe id="story" />
       </Section>
-    </main>
+    </Main>
   );
 };
+
+const Main = styled("main")`
+  width: 100%;
+  height: 100%;
+`;
 
 const Sidebar = styled("nav")`
   position: absolute;
@@ -32,18 +38,17 @@ const Sidebar = styled("nav")`
   background-color: #e4e4e4;
 `;
 
+const GroupHeader = styled("h2")`
+  font-weight: bold;
+`;
+
 const Section = styled("section")`
   position: absolute;
   left: 250px;
   width: calc(100% - 250px);
 `;
 
-const script = `
-  const iframe = document.querySelector('iframe')
-  const buttons = document.querySelectorAll('button')
-  for (const b of buttons) {
-    b.addEventListener('click', () => {
-      iframe.src = '/' + b.innerText
-    })
-  }
+const Button = styled("button")`
+  width: 100%;
+  height: 25px;
 `;

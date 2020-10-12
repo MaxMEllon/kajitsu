@@ -32,6 +32,7 @@ export type GlobalAttributes = Partial<{
   tabindex: string;
   title: string;
   translate: string;
+  class: string;
 }> &
   WhatWGMicroData &
   WAIAria &
