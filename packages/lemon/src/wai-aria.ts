@@ -27,7 +27,7 @@ export type WAIAria = Partial<{
   "aria-label": string;
   "aria-labelledby": string;
   "aria-level": number;
-  "aria-live": number;
+  "aria-live": "log" | "status" | "alert" | "progressbar" | "marquee" | "timer";
   "aria-multiline": "true" | "false"; // default "false"
   "aria-multiselectable": "true" | "false"; // default "false"
   "aria-orientation": "vertical" | "horizontal"; // default "horizontal"
