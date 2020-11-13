@@ -6,7 +6,7 @@ describe("tokenizer", () => {
     const text = `# hoge`
     const tokenizer = new Tokenizer(text)
     const iterator = tokenizer.tokenize()
-    let result: Array<IteratorResult<Token>> = []
+    let result: Array<Token> = []
     let itr: IteratorResult<Token> = iterator.next()
     while (!itr.done) {
       result.push(itr.value)
