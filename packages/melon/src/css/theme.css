@@ -1,0 +1,11 @@
+:root {
+  --header-color: #111;
+  --main-color: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --header-color: #111;
+    --main-color: #333;
+  }
+}

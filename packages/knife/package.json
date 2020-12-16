@@ -1,0 +1,17 @@
+{
+  "name": "@kajitsu/knife",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/index.js",
+  "module": "esm/index.js",
+  "types": "esm/index.d.ts",
+  "scripts": {
+    "build:cjs": "tsc -d -p ./tsconfig.json",
+    "build:esm": "tsc -d -p ./tsconfig.esm.json",
+    "build": "npm run build:cjs && npm run build:esm",
+    "test": "jest"
+  },
+  "dependencies": {},
+  "author": "",
+  "license": "MIT"
+}
