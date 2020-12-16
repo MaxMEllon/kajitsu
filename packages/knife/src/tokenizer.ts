@@ -65,7 +65,7 @@ export class Tokenizer {
   }
 
   skipWhiteSpace() {
-    while (whitespaces.has(this.char)) {
+    while (whitespaces.has) {
       this.read()
     }
   }
