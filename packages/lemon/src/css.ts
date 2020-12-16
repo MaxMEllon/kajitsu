@@ -51,18 +51,18 @@ const trim = (str: string) => pipe(str, trimSpace, trimNewLine);
 /**
  * @summary should be call renderToString before this.
  */
-export const renderToStyleString = (ctx: Context) => {
-  const items = Array.from(ctx.map.entries());
-  return items
+export const renderToStyleString = (ctx: Context) => (
+  "\n" + Array
+    .from(ctx.map.entries())
     .map(
       ([key, val]) =>
-        `.${key}{${trim(val)
+        `.${key} {${trim(val)
           .split(";")
           .filter((x) => x)
-          .join(";")}}`
+          .join(";")};}`
     )
-    .join("");
-};
+    .join("") + "\k"
+);
 
 type PropTypes<T extends FC | keyof InternalIntrinsicElements> = T extends FC<
   infer P

@@ -2,6 +2,8 @@
   "extends": "../../tsconfig.node.json",
   "compilerOptions": {
     "rootDir": "./src",
-    "outDir": "./build"
+    "outDir": "./build",
+    "jsx": "react",
+    "jsxFactory": "h"
   }
 }

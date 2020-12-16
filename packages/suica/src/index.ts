@@ -18,13 +18,22 @@ export interface RequestHandler {
   ): Promise<void>;
 }
 
-interface SuicaMiddleware {
+interface SuicaMiddlwareRegisterWithPath {
+  (path: string | RegExp, handler: RequestHandler): void;
+}
+
+interface SuicaMiddlewareRegisterAll {
+  (handler: RequestHandler): void;
+}
+
+interface SuicaMiddlewareRegister {
   (path: string | RegExp, handler: RequestHandler): void;
   (handler: RequestHandler): void;
 }
 
 class App {
-  readonly use: SuicaMiddleware;
+  readonly use: SuicaMiddlewareRegister;
+  readonly get: SuicaMiddlwareRegisterWithPath;
   private routing: Array<[string | RegExp, RequestHandler]> = [];
 
   constructor() {
@@ -36,6 +45,18 @@ class App {
       }
       this.routing.push(["", args[0]]);
     };
+
+    this.get = (path: string | RegExp, middleware: RequestHandler) => {
+      const enhancedMiddleware: RequestHandler = async (ctx, req, res, next) => {
+        if (req.method !== "GET") {
+          res.statusCode = 404;
+          res.end()
+          return
+        }
+        await middleware(ctx, req, res, next)
+      }
+      this.routing.push([path, enhancedMiddleware])
+    }
   }
 
   async run(req: IncomingMessage, res: ServerResponse): Promise<void> {
