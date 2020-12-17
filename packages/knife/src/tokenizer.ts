@@ -38,6 +38,7 @@ export class Tokenizer {
 
   *tokenize(): Generator<Token, boolean, Token> {
     while (!this.isEnd) {
+      console.log(this.readPosition)
       this.read()
       this.skipWhiteSpace()
       const maybeToken = tokens.get(this.char)

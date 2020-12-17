@@ -1,11 +1,19 @@
 :root {
-  --header-color: #111;
+  --header-color: #353;
   --main-color: #fff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --header-color: #111;
+    --header-color: #353;
     --main-color: #333;
+  }
+
+  a:visited {
+    color: coral;
+  }
+
+  a {
+    color: cyan;
   }
 }

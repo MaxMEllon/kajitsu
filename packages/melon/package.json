@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc -d -p ./tsconfig.json",
     "test": "echo TODO",
-    "run": "ts-node ./src/index.tsx",
+    "run": "npx nodemon -e js,ts,tsx,css --watch ./src --exec \"ts-node ./src/index.tsx\"",
     "production": "node ./build/index.js"
   },
   "author": "",

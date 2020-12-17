@@ -4,6 +4,7 @@ import { InternalIntrinsicElements } from "./jsx";
 
 const randomString = (): string => {
   const str =
+    'le-' +
     Math.random().toString(36).substring(2, 5) +
     Math.random().toString(36).substring(2, 5);
   for (const ctx of allContext) {
@@ -12,18 +13,19 @@ const randomString = (): string => {
   return str;
 };
 
-export type Context = {
-  map: Map<string, string>;
-  getClassNames(): string[];
-  set(): Context;
-  remove(): void;
-};
+export interface Context {
+  map: Map<string, string>,
+  getClassNames(): string[],
+  set(): this
+  remove(): void
+}
 
 let currentContext: Context | undefined;
 const allContext: Context[] = [];
 
+
 export const createStyleContext = () => {
-  const ctx = {
+  const ctx: Context = {
     map: new Map<string, string>(),
     getClassNames(): string[] {
       return Array.from(this.map.keys());
@@ -44,7 +46,7 @@ export const createStyleContext = () => {
 
 export const refreshContext = () => (currentContext = void 0);
 
-const trimSpace = (str: string): string => str.replace(/\s+/g, "");
+const trimSpace = (str: string): string => str.replace(/\s+/g, " ");
 const trimNewLine = (str: string): string => str.replace("\n", "");
 const trim = (str: string) => pipe(str, trimSpace, trimNewLine);
 
@@ -52,17 +54,16 @@ const trim = (str: string) => pipe(str, trimSpace, trimNewLine);
  * @summary should be call renderToString before this.
  */
 export const renderToStyleString = (ctx: Context) => (
-  "\n" + Array
+  Array
     .from(ctx.map.entries())
     .map(
-      ([key, val]) =>
-        `.${key} {${trim(val)
-          .split(";")
-          .filter((x) => x)
-          .join(";")};}`
+      ([key, val]) => `.${key} {${trim(val)
+        .split(";")
+        .filter((x) => x)
+        .join(";")}}`
     )
-    .join("") + "\k"
-);
+    .join("")
+)
 
 type PropTypes<T extends FC | keyof InternalIntrinsicElements> = T extends FC<
   infer P

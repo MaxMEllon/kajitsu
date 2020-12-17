@@ -2,24 +2,29 @@ import { createServer, IncomingMessage, ServerResponse } from "http";
 import { on } from "events";
 import { readFile } from "fs"
 import { promisify } from "util"
-import { join  } from "path"
+import { join } from "path"
 import { createSuica } from "@kajitsu/suica";
+import { pipe } from "@kajitsu/ichigo";
 import { h, renderToString, createStyleContext, renderToStyleString } from "@kajitsu/lemon";
 import { Blog } from "./pages/blog"
 import { Html } from "./components/templates/html"
 
 const readFileAsync = promisify(readFile)
 
+const readCss = (name: string): Promise<Buffer> => pipe(
+  name,
+  (n) => join(__dirname, 'css', `${n}.css`),
+  (p) => readFileAsync(p),
+)
+
 type RequestEventIterator = AsyncIterableIterator<
   [IncomingMessage, ServerResponse]
 >;
 
-const suica = createSuica();
+const suica = createSuica()
 
 suica.use("/main.css", async (_ctx, _req, res) => {
-  const resetCss = await readFileAsync(join(__dirname, 'css', 'reset.css'))
-  const themeCss = await readFileAsync(join(__dirname, 'css', 'theme.css'))
-  const css = Buffer.concat([resetCss, themeCss])
+  const css = await Promise.all([readCss('reset'), readCss('theme')]).then((v) => Buffer.concat(v));
 
   res.setHeader('Content-Type', 'text/css')
   res.setHeader('Cache-Control', 'public, immutable, max-age=2592000')
@@ -34,6 +39,7 @@ suica.get("/blog", async (_ctx, _req, res) => {
   const body = renderToString(<Blog />)
   const style = renderToStyleString(styleCtx)
   const html = renderToString(<Html style={style}>{body}</Html>)
+  styleCtx.remove()
 
   res.setHeader('Content-Type', 'text/html')
   res.setHeader('Cache-Control', `public, max-age=${60 * 60}`)
