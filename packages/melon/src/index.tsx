@@ -23,7 +23,15 @@ type RequestEventIterator = AsyncIterableIterator<
 
 const suica = createSuica()
 
-suica.use("/main.css", async (_ctx, _req, res) => {
+suica.get("/favicon.ico", async (_ctx, _req, res) => {
+  const ico = await readFileAsync(join(__dirname, 'favicon.ico'))
+  res.setHeader('Content-Type', 'image/x-icon')
+  res.setHeader('Cache-Control', 'public, immutable, max-age=2592000')
+  res.write(ico);
+  res.end();
+})
+
+suica.get("/main.css", async (_ctx, _req, res) => {
   const css = await Promise.all([readCss('reset'), readCss('theme')]).then((v) => Buffer.concat(v));
 
   res.setHeader('Content-Type', 'text/css')
@@ -43,7 +51,7 @@ suica.get("/blog", async (_ctx, _req, res) => {
 
   res.setHeader('Content-Type', 'text/html')
   res.setHeader('Cache-Control', `public, max-age=${60 * 60}`)
-  res.write(html)
+  res.write(`<!DOCTYPE html>${html}`)
   res.end();
 });
 
