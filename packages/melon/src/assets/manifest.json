@@ -1,0 +1,23 @@
+{
+  "short_name": "me1on's blog",
+  "name": "maxmellon's blog",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#222",
+  "display": "minimal-ui",
+  "prefer_related_applications": true,
+  "scope": "/",
+  "theme_color": "#353"
+}

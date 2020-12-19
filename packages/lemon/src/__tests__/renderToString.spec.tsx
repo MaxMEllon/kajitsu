@@ -30,4 +30,11 @@ describe("renderToString", () => {
     const actual = renderToString(<div aria-relevant={["additions", "all"]} />);
     expect(actual).toEqual(`<div aria-relevant="additions all"></div>`);
   });
+
+  it("async/defer attribute expected key only", () => {
+    const actual1 = renderToString(<script async />);
+    expect(actual1).toEqual(`<script async></script>`);
+    const actual2 = renderToString(<script defer />);
+    expect(actual2).toEqual(`<script defer></script>`);
+  });
 });

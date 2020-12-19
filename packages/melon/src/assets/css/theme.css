@@ -1,6 +1,6 @@
 :root {
   --header-color: #353;
-  --main-color: #fff;
+  --main-color: #333;
 }
 
 @media (prefers-color-scheme: dark) {

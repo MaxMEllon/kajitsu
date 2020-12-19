@@ -6,6 +6,8 @@ const arrayToString = (node: VNode<{ children: any[] }>): string => {
 
 const attrToString = ([key, value]: [string, unknown]): string => {
   switch (key) {
+    case "async": case "defer":
+      return !!value ? key : '';
     case "className":
       return `class="${value}"`;
     case "aria-relevant":

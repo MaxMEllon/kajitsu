@@ -12,6 +12,6 @@ describe("css", () => {
     const act = renderToStyleString(ctx);
     const classNames = ctx.getClassNames();
     expect(string).toEqual(`<div class="${classNames[0]}"></div>`);
-    expect(act).toEqual(`.${classNames[0]}{color:black;font-weight:800}`);
+    expect(act).toEqual(`.${classNames[0]} { color: black; font-weight: 800; }`);
   });
 });

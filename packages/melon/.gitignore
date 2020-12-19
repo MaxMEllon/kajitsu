@@ -1,1 +1,4 @@
 *.0x
+*.pem
+/for-local/nginx.conf
+*.log
