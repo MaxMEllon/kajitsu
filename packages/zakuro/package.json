@@ -7,7 +7,7 @@
     "build:cjs": "tsc -d -p ./tsconfig.json",
     "build:esm": "tsc -d -p ./tsconfig.esm.json",
     "build": "npm run build:cjs && npm run build:esm",
-    "start": "ts-node ./src/explorer/index.tsx",
+    "start": "npx ts-node ./src/explorer/index.tsx",
     "test": "echo TODO"
   },
   "author": "",

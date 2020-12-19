@@ -2,3 +2,4 @@ build
 esm
 node_modules
 *.tsbuildinfo
+*.log

@@ -7,7 +7,7 @@
     "prebuild": "rm -rf build tsconfig.tsbuildinfo && cp -r src build",
     "build": "tsc -d -p ./tsconfig.json",
     "test": "echo TODO",
-    "run": "npx nodemon -e js,ts,tsx,css --watch ./src --exec \"ts-node ./src/index.tsx\"",
+    "run": "npx nodemon -e js,ts,tsx,css --watch ./src --exec \"npx ts-node ./src/index.tsx\"",
     "production": "NODE_ENV=production node ./build/index.js",
     "nginx": "envsubst '\\$GHQ_ROOT' < ./for-local/nginx.templ.conf > ./for-local/nginx.conf && nginx -c $(pwd)/for-local/nginx.conf -g 'daemon off;'"
   },
