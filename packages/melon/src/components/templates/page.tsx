@@ -40,7 +40,8 @@ const Header = styled('header')`
 `
 
 const Main = styled('main')`
-  height: min(100vh - 40px, 100%);
+  min-height: 100vh;
+  height: 100%;
   width: min(1000px, 95%);
   margin: 0em auto;
 `
