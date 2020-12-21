@@ -16,7 +16,7 @@ a {
 @media (prefers-color-scheme: dark) {
   :root {
     --header-bg-color: #353;
-    --header-color: #1c3f1e;
+    --header-color: #e3ffe5;
     --main-bg-color: #222;
     --main-color: #fff;
   }
