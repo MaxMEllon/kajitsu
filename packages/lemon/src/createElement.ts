@@ -17,13 +17,13 @@ export type HTMLAttributes = GlobalAttributes;
 export function createElement(
   type: string,
   props: HTMLAttributes | null,
-  ...children: ComponentChildren
+  ...children: ComponentChildren[]
 ): VNode<any>;
 
 export function createElement<P>(
   type: FC<P>,
   props: (P & { children?: ComponentChildren }) | null,
-  ...children: Children[]
+  ...children: ComponentChildren[]
 ): VNode<any>;
 
 export function createElement(type: any, props: any, ...children: any) {
@@ -42,7 +42,7 @@ export namespace createElement {
 export function h(
   type: string,
   props: (HTMLAttributes & { className?: string }) | null,
-  ...children: ComponentChildren
+  ...children: ComponentChildren[]
 ): VNode<any>;
 
 export function h<P>(
@@ -55,7 +55,14 @@ export function h(type: any, props: any, ...children: any) {
   // FXIME: should not use `.flat()`
   return createElement(type, props, ...children.flat());
 }
+
+export const Fragment: FC = ({ children }) => {
+  if (children) {
+    return children as h.JSX.Element
+  }
+  return null
+}
+
 export namespace h {
   export import JSX = JSXInternal;
 }
-

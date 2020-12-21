@@ -20,6 +20,15 @@ export function pipe<A, B, C, D, E>(
   op4: (input: D) => E
 ): E;
 
+export function pipe<A, B, C, D, E, F>(
+  value: A,
+  op1: (input: A) => B,
+  op2: (input: B) => C,
+  op3: (input: C) => D,
+  op4: (input: D) => E,
+  op5: (input: E) => F
+): F;
+
 export function pipe(
   value: any,
   ...operations: Array<(value: any) => any>

@@ -1,27 +1,10 @@
 import { h, FC, styled } from '@kajitsu/lemon'
 
-const menus = [
-  {
-    path: '/',
-    name: 'Top'
-  },
-  {
-    path: '/blog',
-    name: 'Blog'
-  }
-] as const
-
-type MenuNames = 'Top' | 'Blog'
-
-export const Nav: FC<{ current: MenuNames }> = ({ current }) => (
+export const Nav: FC = () => (
   <HtmlNav>
     <NavTitle>maxmellon's blog</NavTitle>
     <NavList>
-      {menus.map(v => (
-        current === v.name
-          ? <NavListItem><Current>{v.name}</Current></NavListItem>
-          : <NavListItem><a href={v.path}>{v.name}</a></NavListItem>
-      ))}
+      <NavListItem><a href="/">Blog</a></NavListItem>
     </NavList>
   </HtmlNav>
 )
@@ -33,7 +16,7 @@ const NavTitle = styled('h1')`
 `
 
 const HtmlNav = styled('nav')`
-  width: 1000px;
+  width: min(1000px, 95%);
   margin: 0 auto;
   height: 100%;
 `
@@ -48,8 +31,3 @@ const NavListItem = styled('li')`
   padding-left: 3rem;
   line-height: 2.6;
 `
-
-const Current = styled('span')`
-  font-weight: bold;
-`
-

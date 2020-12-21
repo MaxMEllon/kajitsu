@@ -24,21 +24,24 @@ export const PageTemplate: FC<Props> = ({ headerContents, children, footerConten
 );
 
 const Root = styled("div")`
+  background-color: var(--main-bg-color);
+  color: var(--main-color);
   height: 100%;
+  width: 100%;
 `
 
 const Header = styled('header')`
   position: sticky;
   z-index: 1;
   top: 0;
-  background-color: var(--header-color);
+  background-color: var(--header-bg-color);
   height: 40px;
-  color: white;
+  color: var(--header-color);
 `
 
 const Main = styled('main')`
-  background-color: var(--main-color);
   height: min(100vh - 40px, 100%);
+  width: min(1000px, 95%);
   margin: 0em auto;
 `
 

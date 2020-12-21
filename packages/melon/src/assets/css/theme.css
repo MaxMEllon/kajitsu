@@ -1,12 +1,24 @@
 :root {
-  --header-color: #353;
-  --main-color: #333;
+  --header-bg-color: #b0dab0;
+  --header-color: #111;
+  --main-bg-color: #fff;
+  --main-color: #111;
+}
+
+a:visited {
+  color: darkviolet;
+}
+
+a {
+  color: darkblue;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --header-color: #353;
-    --main-color: #333;
+    --header-bg-color: #353;
+    --header-color: #1c3f1e;
+    --main-bg-color: #222;
+    --main-color: #fff;
   }
 
   a:visited {

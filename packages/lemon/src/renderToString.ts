@@ -17,9 +17,12 @@ const attrToString = ([key, value]: [string, unknown]): string => {
   }
 };
 
-export function renderToString(node: VNode<any> | string | null): string {
+export function renderToString(node: Array<VNode<any>> | VNode<any> | string | null): string {
   if (!node) return "";
   if (typeof node === "string") return node;
+  if (Array.isArray(node)) {
+    return node.map(renderToString).join("")
+  }
   const childrenAsArray =
     typeof node.props === "object" &&
     node.props != null &&

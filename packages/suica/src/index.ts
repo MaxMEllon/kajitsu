@@ -69,7 +69,7 @@ class App {
 
       const isMatch =
         typeof pathOrRegExp === "string"
-          ? currentPath?.includes(pathOrRegExp)
+          ? currentPath === pathOrRegExp
           : pathOrRegExp.test(currentPath ?? "");
 
       if (isMatch) {

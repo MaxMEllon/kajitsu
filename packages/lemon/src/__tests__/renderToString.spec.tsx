@@ -1,4 +1,4 @@
-import { h } from "..";
+import { h, FC, Fragment } from "..";
 import { renderToString } from "../renderToString";
 
 describe("renderToString", () => {
@@ -37,4 +37,10 @@ describe("renderToString", () => {
     const actual2 = renderToString(<script defer />);
     expect(actual2).toEqual(`<script defer></script>`);
   });
+
+  it("Fragment works", () => {
+    const X: FC = () => <div>x</div>
+    const actual = renderToString(<><p>a</p><X /><p>b</p></>);
+    expect(actual).toEqual('<p>a</p><div>x</div><p>b</p>');
+  })
 });

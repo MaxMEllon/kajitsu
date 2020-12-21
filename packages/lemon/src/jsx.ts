@@ -75,6 +75,7 @@ export interface InternalIntrinsicElements {
       "http-equiv": string;
       content: string;
       charset: RFC2978;
+      property: string
     }>;
   style: GlobalAttributes &
     Partial<{
@@ -504,7 +505,7 @@ export interface FC<P = {}> {
 }
 
 export type Children = VNode<any> | string | null;
-export type ComponentChildren = Children[];
+export type ComponentChildren = Children[] | Children;
 
 export interface VNode<P = {}> {
   key?: string | number;
