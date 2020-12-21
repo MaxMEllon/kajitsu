@@ -2,7 +2,60 @@
   padding-bottom: 50px;
 }
 
-#markdown-root > pre > code {
+#markdown-root h1 {
+  font-size: 32px;
+  margin: 20px 0;
+}
+
+#markdown-root h1::before {
+  font-size: 28px;
+  content: '#';
+  margin-right: 20px;
+}
+
+#markdown-root h2 {
+  font-size: 28px;
+  margin: 16px 0;
+}
+
+#markdown-root h2::before {
+  font-size: 24px;
+  content: '##';
+  margin-right: 16px;
+}
+
+#markdown-root h3 {
+  font-size: 20px;
+  margin: 12px 0;
+}
+
+#markdown-root em {
+  font-weight: 700;
+}
+
+
+#markdown-root h3::before {
+  font-size: 16px;
+  content: '###';
+  margin-right: 8px;
+}
+
+#markdown-root pre::before {
+  display: block;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  content: '```';
+  height: 10px;
+  margin-top: 20px;
+}
+
+#markdown-root pre::after {
+  display: block;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  content: '```';
+  margin-bottom: 20px;
+}
+
+#markdown-root pre > code {
   display: block;
   background-color: #eee;
   border-left: 4px solid #353;
@@ -13,66 +66,18 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  #markdown-root > pre > code {
+  #markdown-root pre > code {
     background-color: #000;
   }
 }
 
-#markdown-root > h1 {
-  font-size: 32px;
-  margin: 20px 0;
-}
-
-#markdown-root > h1::before {
-  font-size: 28px;
-  content: '#';
-  margin-right: 20px;
-}
-
-#markdown-root > h2 {
-  font-size: 28px;
-  margin: 16px 0;
-}
-
-#markdown-root > h2::before {
-  font-size: 24px;
-  content: '##';
-  margin-right: 16px;
-}
-
-#markdown-root > h3 {
-  font-size: 20px;
-  margin: 12px 0;
-}
-
-#markdown-root > h3::before {
-  font-size: 16px;
-  content: '###';
-  margin-right: 8px;
-}
-
-#markdown-root > pre::before {
-  display: block;
-  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-  content: '```';
-  height: 10px;
-  margin-top: 20px;
-}
-
-#markdown-root > pre::after {
-  display: block;
-  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-  content: '```';
-  margin-bottom: 20px;
-}
-
-#markdown-root > ul {
+#markdown-root ul {
   margin: 10px 0;
   list-style-type: none;
   margin-left: 16px;
 }
 
-#markdown-root > ul > li::before {
+#markdown-root ul > li::before {
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   font-size: 16px;
   margin-right: 16px;
@@ -85,7 +90,7 @@
   margin-left: 26px;
 }
 
-#markdown-root > ul > li > ul >li::before {
+#markdown-root ul > li > ul > li::before {
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   font-size: 16px;
   margin-right: 16px;
