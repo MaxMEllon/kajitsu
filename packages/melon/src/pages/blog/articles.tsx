@@ -14,13 +14,13 @@ type Articles = {
 export const articles: Articles = {
   '2020': [
     {
-      title: 'no dependencies で blog を作っている話',
+      title: 'node modules なし blog を作っている話',
       key: '20201221',
       extendsHeader: async () => {
         return (
           <>
-            <meta property="og:url" content="" />
-            <meta property="og:title" content="no dependencies で blog を作っている話" />
+            <meta property="og:url" content="https://me1on.dev/blog/20201221" />
+            <meta property="og:title" content="node modules なし blog を作っている話" />
             <meta property="og:site_name" content="maxmellon's blog" />
           </>
         )
