@@ -137,7 +137,7 @@ suica.get("/", async (_ctx, _req, res) => {
   const html = renderToString(<Html nonce={nonce} style={style}>{body}</Html>)
   styleCtx.remove()
 
-  res.setHeader('Content-Security-Policy', `default-src 'self'; style-src 'self' 'nonce-${nonce};'`)
+  res.setHeader('Content-Security-Policy', `default-src 'self'; style-src 'self' 'nonce-${nonce}';`)
   res.setHeader('Content-Type', 'text/html')
   res.setHeader('Cache-Control', `public, max-age=${60 * 60}`)
   res.write(`<!DOCTYPE html>${html}`)
