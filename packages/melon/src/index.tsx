@@ -92,7 +92,7 @@ suica.get('/sw.20c18a66c331ba17e029ce0818cd3fff.js', async (_ctx, _req, res) => 
 suica.get('/register.js', async (_ctx, _req, res) => {
   const sw = await readAssets('register.js')
   res.setHeader('Content-Type', 'application/javascript')
-  res.setHeader('Cache-Control', 'privatte, no-store, must-revalidate')
+  res.setHeader('Cache-Control', 'private, no-store, must-revalidate')
   res.write(sw);
   res.end();
 })
