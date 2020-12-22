@@ -81,6 +81,7 @@ export interface InternalIntrinsicElements {
     Partial<{
       media: string;
       title: string;
+      nonce: string;
     }>;
   title: GlobalAttributes;
 
@@ -318,6 +319,7 @@ export interface InternalIntrinsicElements {
       nomodule: boolean;
       async: boolean;
       defer: boolean;
+      nonce: string;
       crossorigin: string;
       integrity: string;
       referrerpolicy: string;

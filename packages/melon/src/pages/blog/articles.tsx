@@ -22,6 +22,7 @@ export const articles: Articles = {
             <meta property="og:url" content="https://me1on.dev/blog/20201221" />
             <meta property="og:title" content="node modules なし blog を作っている話" />
             <meta property="og:site_name" content="maxmellon's blog" />
+            <meta name="twitter:card" content="summary" />
           </>
         )
       },

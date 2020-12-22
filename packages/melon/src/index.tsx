@@ -1,4 +1,5 @@
 import { createServer, IncomingMessage, ServerResponse } from "http";
+import { randomBytes } from "crypto";
 import { on } from "events";
 import { readFile } from "fs"
 import { promisify } from "util"
@@ -102,15 +103,23 @@ for (const [_, list] of Object.entries(articles)) {
       const styleCtx = createStyleContext().set()
       const body = renderToString(await article.renderer())
       const style = renderToStyleString(styleCtx)
+      const nonce = randomBytes(2).toString('base64')
       const extendsHead = (
         <>
           <link rel="stylesheet" href="/markdown.css" />
           {await article.extendsHeader()}
         </>
       )
-      const html = renderToString(<Html extendsHead={extendsHead} style={style}>{body}</Html>)
+      const html = renderToString(
+        <Html
+          title={article.title}
+          extendsHead={extendsHead}
+          nonce={nonce}
+          style={style}
+        >{body}</Html>
+      )
       styleCtx.remove()
-
+      res.setHeader('Content-Security-Policy', `default-src 'self'; style-src 'self' 'nonce-${nonce}';`)
       res.setHeader('Content-Type', 'text/html')
       res.setHeader('Cache-Control', `public, max-age=${60 * 60}`)
       res.write(`<!DOCTYPE html>${html}`)
@@ -123,10 +132,12 @@ suica.get("/", async (_ctx, _req, res) => {
   const Blog = await import('./pages/blog').then(r => r.Blog)
   const styleCtx = createStyleContext().set()
   const body = renderToString(<Blog />)
+  const nonce = randomBytes(2).toString('base64')
   const style = renderToStyleString(styleCtx)
-  const html = renderToString(<Html style={style}>{body}</Html>)
+  const html = renderToString(<Html nonce={nonce} style={style}>{body}</Html>)
   styleCtx.remove()
 
+  res.setHeader('Content-Security-Policy', `default-src 'self'; style-src 'self' 'nonce-${nonce};'`)
   res.setHeader('Content-Type', 'text/html')
   res.setHeader('Cache-Control', `public, max-age=${60 * 60}`)
   res.write(`<!DOCTYPE html>${html}`)
