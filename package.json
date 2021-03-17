@@ -28,7 +28,7 @@
     "packages/melon"
   ],
   "devDependencies": {
-    "@types/jest": "26.0.20",
+    "@types/jest": "26.0.21",
     "@types/node": "14.14.34",
     "jest": "26.6.3",
     "ts-jest": "26.5.1",
