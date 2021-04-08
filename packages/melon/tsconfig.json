@@ -3,6 +3,7 @@
   "compilerOptions": {
     "rootDir": "./src",
     "outDir": "./build",
+    "module": "commonjs",
     "jsx": "react",
     "jsxFactory": "h",
     "jsxFragmentFactory": "Fragment"

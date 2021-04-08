@@ -1,7 +1,4 @@
-import { h, FC, styled } from '@kajitsu/lemon'
-import { PageTemplate } from '../components/templates/page'
+import { h, FC, styled } from "@kajitsu/lemon";
+import { PageTemplate } from "../components/templates/page";
 
-export const Index: FC = () => (
-  <PageTemplate headerContents={null} footerContents={null}>
-  </PageTemplate>
-);
+export const Index: FC = () => <PageTemplate headerContents={null} footerContents={null}></PageTemplate>;

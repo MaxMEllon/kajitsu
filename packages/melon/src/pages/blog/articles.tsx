@@ -1,21 +1,21 @@
-import { h, Fragment } from '@kajitsu/lemon'
-import { PageTemplate } from '../../components/templates/page'
-import { Nav } from '../../components/organisms/nav'
+import { h, Fragment } from "@kajitsu/lemon";
+import { PageTemplate } from "../../components/templates/page";
+import { Nav } from "../../components/organisms/nav";
 
 type Articles = {
   [year: string]: Array<{
-    title: string
-    key: string
-    extendsHeader: () => Promise<h.JSX.Element>
-    renderer: () => Promise<h.JSX.Element>
-  }>
-}
+    title: string;
+    key: string;
+    extendsHeader: () => Promise<h.JSX.Element>;
+    renderer: () => Promise<h.JSX.Element>;
+  }>;
+};
 
 export const articles: Articles = {
-  '2020': [
+  "2020": [
     {
-      title: 'node modules なし blog を作っている話',
-      key: '20201221',
+      title: "node modules なし blog を作っている話",
+      key: "20201221",
       extendsHeader: async () => {
         return (
           <>
@@ -24,17 +24,17 @@ export const articles: Articles = {
             <meta property="og:site_name" content="maxmellon's blog" />
             <meta name="twitter:card" content="summary" />
           </>
-        )
+        );
       },
       renderer: async () => {
-        const header = <Nav />
-        const Article = await import('./20201221').then(r => r.Article)
+        const header = <Nav />;
+        const Article = await import("./20201221").then((r) => r.Article);
         return (
           <PageTemplate headerContents={header} footerContents={null}>
             <Article />
           </PageTemplate>
-        )
-      }
-    }
-  ]
-}
+        );
+      },
+    },
+  ],
+};
