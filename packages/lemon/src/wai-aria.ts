@@ -19,10 +19,6 @@ export type WAIAria = Partial<{
   "aria-haspopup": "true" | "false"; // default "false"
   "aria-hidden": "true" | "false"; // default "false"
   "aria-invalid": "grammar" | "false" | "spelling" | "true"; // default "false"
-  /**
-   * @description
-   * If the label text is visible on screen, authors SHOULD use aria-labelledby and SHOULD NOT use aria-label.
-   */
   "aria-label": string;
   "aria-labelledby": string;
   "aria-level": number;
