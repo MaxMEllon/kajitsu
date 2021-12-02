@@ -81,6 +81,7 @@ class App {
       }
     }
     if (!res.writableEnded) {
+      res.statusCode = 404;
       res.write("");
       res.end();
     }

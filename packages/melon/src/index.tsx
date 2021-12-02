@@ -1,7 +1,7 @@
 import { createServer, IncomingMessage, ServerResponse } from "http";
 import { randomBytes } from "crypto";
 import { on } from "events";
-import { readFile } from "fs";
+import { readFile, readdirSync } from "fs";
 import { promisify } from "util";
 import { join } from "path";
 import { createSuica } from "@kajitsu/suica";
@@ -19,7 +19,11 @@ const readAssets = (name: string): Promise<Buffer> =>
     (p) => readFileAsync(p),
   );
 
+const images = readdirSync(join(__dirname, "assets", "images"))
+
 type RequestEventIterator = AsyncIterableIterator<[IncomingMessage, ServerResponse]>;
+
+const csp = (nonce: string) => `default-src 'self'; img-src 'self' data:; style-src 'self' 'nonce-${nonce}'; script-src 'self' 'nonce-${nonce}';`
 
 const suica = createSuica();
 
@@ -54,6 +58,22 @@ for (const i of [72, 96, 128, 144, 152, 192, 384, 512]) {
     res.write(png);
     res.end();
   });
+}
+
+const contentType = {
+  png: "png",
+  svg: "svg+xml",
+};
+
+for (const i of images) {
+  suica.get(`/images/${i}`, async (_ctx, _req, res) => {
+    const png = await readAssets(`images/${i}`);
+    const ext = i.split('.')[1] as 'png' | 'svg'
+    res.setHeader("Content-Type", `image/${contentType[ext]}`);
+    res.setHeader("Cache-Control", "public, immutable, max-age=2592000");
+    res.write(png);
+    res.end();
+  })
 }
 
 suica.get("/favicon.ico", async (_ctx, _req, res) => {
@@ -102,9 +122,9 @@ for (const [_, list] of Object.entries(articles)) {
   list.forEach((article) => {
     suica.get(`/blog/${article.key}`, async (_ctx, _req, res) => {
       const styleCtx = createStyleContext().set();
-      const body = renderToString(await article.renderer());
-      const style = renderToStyleString(styleCtx);
       const nonce = randomBytes(2).toString("base64");
+      const body = renderToString(await article.renderer(nonce));
+      const style = renderToStyleString(styleCtx);
       const extendsHead = (
         <>
           <link rel="stylesheet" href="/markdown.css" />
@@ -117,7 +137,7 @@ for (const [_, list] of Object.entries(articles)) {
         </Html>,
       );
       styleCtx.remove();
-      res.setHeader("Content-Security-Policy", `default-src 'self'; style-src 'self' 'nonce-${nonce}';`);
+      res.setHeader("Content-Security-Policy", csp(nonce));
       res.setHeader("Content-Type", "text/html");
       res.setHeader("Cache-Control", `public, max-age=${60 * 60}`);
       res.write(`<!DOCTYPE html>${html}`);
@@ -129,8 +149,8 @@ for (const [_, list] of Object.entries(articles)) {
 suica.get("/", async (_ctx, _req, res) => {
   const Blog = await import("./pages/blog").then((r) => r.Blog);
   const styleCtx = createStyleContext().set();
-  const body = renderToString(<Blog />);
   const nonce = randomBytes(2).toString("base64");
+  const body = renderToString(<Blog />);
   const style = renderToStyleString(styleCtx);
   const html = renderToString(
     <Html nonce={nonce} style={style}>
@@ -139,7 +159,7 @@ suica.get("/", async (_ctx, _req, res) => {
   );
   styleCtx.remove();
 
-  res.setHeader("Content-Security-Policy", `default-src 'self'; style-src 'self' 'nonce-${nonce}';`);
+  res.setHeader("Content-Security-Policy", csp(nonce));
   res.setHeader("Content-Type", "text/html");
   res.setHeader("Cache-Control", `public, max-age=${60 * 60}`);
   res.write(`<!DOCTYPE html>${html}`);
@@ -147,7 +167,7 @@ suica.get("/", async (_ctx, _req, res) => {
 });
 
 const main = async () => {
-  const itr: RequestEventIterator = on(createServer().listen(3000), "request");
+  const itr: RequestEventIterator = on(createServer().listen(3333), "request");
 
   let n = await itr.next();
   while (!n.done) {

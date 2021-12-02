@@ -1,46 +1,101 @@
-#markdown-root {
+#mr {
   padding-bottom: 50px;
 }
 
-#markdown-root h1 {
+#mr h1 {
   font-size: 32px;
   margin: 20px 0;
 }
 
-#markdown-root h1::before {
+#mr h1::before {
   font-size: 28px;
   content: '#';
   margin-right: 20px;
 }
 
-#markdown-root h2 {
+#mr blockquote {
+  padding: 10px;
+}
+
+#mr blockquote > p::before {
+  display: inline;
+  width: 4px;
+  height: 2em;
+  background-color: #eee;
+  content: ' ';
+  position: absolute;
+  margin-left: -20px;
+}
+
+#mr blockquote > p {
+  padding-left: 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+  #mr blockquote > p::before {
+    background-color: #000;
+  }
+}
+
+#mr h2 {
   font-size: 28px;
   margin: 16px 0;
 }
 
-#markdown-root h2::before {
+#mr h2::before {
   font-size: 24px;
   content: '##';
   margin-right: 16px;
 }
 
-#markdown-root h3 {
+#mr h3 {
   font-size: 20px;
   margin: 12px 0;
 }
 
-#markdown-root em {
+#mr h4 {
+  font-size: 18px;
+  margin: 12px 0;
+}
+
+#mr h4::before {
+  font-size: 14px;
+  content: '**';
+  margin: 8px 0;
+}
+
+#mr h4::after {
+  font-size: 14px;
+  content: '**';
+  margin: 8px 0;
+}
+
+#mr strong {
+  margin: 12px 0;
+  font-weight: 800;
+}
+
+#mr strong::before {
+  content: '**';
+  margin: 3px 0;
+}
+
+#mr strong::after {
+  content: '**';
+  margin: 3px 0;
+}
+
+#mr em {
   font-weight: 700;
 }
 
-
-#markdown-root h3::before {
+#mr h3::before {
   font-size: 16px;
   content: '###';
   margin-right: 8px;
 }
 
-#markdown-root pre::before {
+#mr pre::before {
   display: block;
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   content: '```';
@@ -48,14 +103,54 @@
   margin-top: 20px;
 }
 
-#markdown-root pre::after {
+#mr pre::after {
   display: block;
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   content: '```';
   margin-bottom: 20px;
 }
 
-#markdown-root pre > code {
+#mr code {
+  display: inline;
+  background-color: #eee;
+  padding: 2px 8px;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  white-space: nowrap;
+}
+
+@media all and (max-width: 800px) {
+  #mr code {
+    white-space: pre-wrap;
+  }
+}
+
+#mr code::before {
+  display: inline;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  content: '`';
+}
+
+#mr code::after {
+  display: inline;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  content: '`';
+}
+
+#mr pre > code::after {
+  content: '';
+}
+
+#mr pre > code::before {
+  content: '';
+}
+
+@media (prefers-color-scheme: dark) {
+  #mr code {
+    background-color: #000;
+  }
+}
+
+#mr pre > code {
   display: block;
   background-color: #eee;
   border-left: 4px solid #353;
@@ -63,34 +158,35 @@
   margin: 10px 5px;
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   overflow: scroll;
+  white-space: pre;
 }
 
 @media (prefers-color-scheme: dark) {
-  #markdown-root pre > code {
+  #mr pre > code {
     background-color: #000;
   }
 }
 
-#markdown-root ul {
+#mr ul {
   margin: 10px 0;
   list-style-type: none;
   margin-left: 16px;
 }
 
-#markdown-root ul > li::before {
+#mr ul > li::before {
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   font-size: 16px;
   margin-right: 16px;
   content: '*';
 }
 
-#markdown-root ul > li > ul {
+#mr ul > li > ul {
   margin: 10px 0;
   list-style-type: none;
   margin-left: 26px;
 }
 
-#markdown-root ul > li > ul > li::before {
+#mr ul > li > ul > li::before {
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   font-size: 16px;
   margin-right: 16px;

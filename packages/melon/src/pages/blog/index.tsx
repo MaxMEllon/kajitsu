@@ -8,13 +8,16 @@ export const Blog: FC = () => {
   return (
     <PageTemplate headerContents={header} footerContents={null}>
       <H1>記事一覧</H1>
-      {Object.entries(articles).map(([year, list]) => (
+      {Object.entries(articles).reverse().map(([year, list]) => (
         <section>
           <Year>{year}</Year>
           <UnOrderedList>
             {list.map((article) => (
               <ListItem>
-                <a href={`/blog/${article.key}`}>{article.title}</a>
+                <ArticleFlex>
+                  <Time datetime={article.date}>{article.date}</Time>
+                  <a href={`/blog/${article.key}`}>{article.title}</a>
+                </ArticleFlex>
               </ListItem>
             ))}
           </UnOrderedList>
@@ -23,6 +26,20 @@ export const Blog: FC = () => {
     </PageTemplate>
   );
 };
+
+const Time = styled("time")`
+  margin-right: 12px;
+  max-width: 100px;
+  min-width: 100px;
+  width: 100px;
+`
+
+const ArticleFlex = styled("div")`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  text-align: center;
+`
 
 const H1 = styled("h1")`
   font-size: 32px;

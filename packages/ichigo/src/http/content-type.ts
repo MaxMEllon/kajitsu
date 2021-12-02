@@ -2,7 +2,7 @@ import { IncomingMessage } from "http";
 
 const TYPE_REGEXP = /^ *([A-Za-z0-9][A-Za-z0-9!#$&^_-]{0,126})\/([A-Za-z0-9][A-Za-z0-9!#$&^_.+-]{0,126}) *$/;
 
-type MediaType = {
+export type MediaType = {
   type: string;
   subtype: string;
   suffix?: string;

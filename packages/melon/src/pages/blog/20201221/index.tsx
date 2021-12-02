@@ -1,7 +1,7 @@
 import { h, FC } from "@kajitsu/lemon";
 
 export const Article: FC = () => (
-  <article id="markdown-root">
+  <article id="mr">
     <h1>node modules なし blog を作っている話</h1>
     <p>
       今年の9月頃から，no dependencies で blog を作っています．(devDependencies には，jest と TypeScript を入れています)
