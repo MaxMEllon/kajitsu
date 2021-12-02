@@ -28,10 +28,10 @@
     "packages/melon"
   ],
   "devDependencies": {
-    "@types/jest": "26.0.22",
-    "@types/node": "14.14.37",
+    "@types/jest": "26.0.24",
+    "@types/node": "14.17.5",
     "jest": "26.6.3",
-    "ts-jest": "26.5.4",
-    "typescript": "4.2.4"
+    "ts-jest": "26.5.6",
+    "typescript": "4.5.2"
   }
 }
