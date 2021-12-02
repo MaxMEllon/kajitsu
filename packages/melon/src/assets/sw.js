@@ -1,6 +1,6 @@
-const CACHE_NAME = "@kajitsu/melon@1.0.0";
+const CACHE_NAME = "@kajitsu/melon@1.1.1";
 
-const urlsToCache = ["/", "/blog", "/blog/20201221", "/main.css", "/markdown.css"];
+const urlsToCache = ["/", "/blog/20201221", "/main.css", "/markdown.css"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(

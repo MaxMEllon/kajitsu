@@ -102,7 +102,7 @@ suica.get("/main.css", async (_ctx, _req, res) => {
   res.end();
 });
 
-suica.get("/sw.20c18a66c331ba17e029ce0818cd3fff.js", async (_ctx, _req, res) => {
+suica.get("/sw.h6u4siOcagcPl8vd.js", async (_ctx, _req, res) => {
   const sw = await readAssets("sw.js");
   res.setHeader("Content-Type", "application/javascript");
   res.setHeader("Cache-Control", "public, immutable, max-age=2592000");

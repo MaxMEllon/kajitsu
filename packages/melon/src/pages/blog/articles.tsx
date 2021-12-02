@@ -50,6 +50,7 @@ export const articles: Articles = {
             <meta property="og:url" content="https://me1on.dev/blog/20211204" />
             <meta property="og:title" content="tc39/proposal-pipeline-operator の過去と現状" />
             <meta property="og:site_name" content="maxmellon's blog" />
+            <meta property="og:image" content="https://me1on.dev/images/ogp-pipeline-operator.png" />
             <meta name="twitter:card" content="summary" />
           </>
         );
