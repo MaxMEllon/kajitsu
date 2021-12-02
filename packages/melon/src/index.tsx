@@ -167,7 +167,7 @@ suica.get("/", async (_ctx, _req, res) => {
 });
 
 const main = async () => {
-  const itr: RequestEventIterator = on(createServer().listen(3333), "request");
+  const itr: RequestEventIterator = on(createServer().listen(3000), "request");
 
   let n = await itr.next();
   while (!n.done) {
