@@ -226,7 +226,7 @@ export const Article: FC<{ nonce?: string }> = ({ nonce }) => (
       当てて紹介していきます．
       <wbr />
     </p>
-    <h2>F#-style pipeline における ASI との競合</h2>
+    <h3>F#-style pipeline における ASI との競合</h3>
     <p>
       非同期を
       <wbr /> pipeline で扱いたいモチベーションから ASI で起きた予期せぬ問題までの流れを
