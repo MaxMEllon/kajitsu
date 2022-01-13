@@ -1,4 +1,4 @@
-FROM nginx:1.21.4-alpine
+FROM nginx:1.21.5-alpine
 
 RUN apk --no-cache add tzdata && \
     cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
